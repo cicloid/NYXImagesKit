@@ -112,7 +112,8 @@ typedef struct
 
 -(void)dealloc
 {
-	dispatch_release(_queue), _queue = NULL;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 6.0)
+        dispatch_release(_queue), _queue = NULL;
 }
 
 #pragma mark - Public
